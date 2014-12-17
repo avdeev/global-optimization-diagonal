@@ -33,23 +33,65 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <form role="form">
+        <div class="col-sm-4 col-md-3 sidebar">
+          <form role="form" id="params">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              <button type="button" class="btn btn-primary" id="run">Запустить</button>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <label for="f">f(x, y)</label>
+              <input id="f" name="f" type="text" class="form-control" value="sin(x)">
             </div>
-            <button type="button" class="btn btn-primary">Запустить</button>
+            <div class="form-group">
+              <label for="fLipschitz">Константа Липшица</label>
+              <input type="text" class="form-control" id="fLipschitz" name="fLipschitz" value="4">
+            </div>
+            <div class="form-group">
+              <label for="eps">Точность вычислений</label>
+              <input type="text" class="form-control" id="eps" name="eps" value="0.01">
+            </div>
+            <div class="form-group">
+              <label for="lowBound">Граница параллелепипеда (A)</label>
+              <input type="text" class="form-control" id="lowBound" name="lowBound" value="-1">
+            </div>
+            <div class="form-group">
+              <label for="highBound">Граница параллелепипеда (B)</label>
+              <input type="text" class="form-control" id="highBound" name="highBound" value="1">
+            </div>
           </form>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          
-          
-
+        <div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 main">
+          <div class="canvas-container">
+            <canvas id="visualization" width="950" height="500">
+              Your browser does not support the canvas tag.
+            </canvas>
+          </div>
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Характеристика</th>
+                <th>Значение</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Количество разбиений</td>
+                <td id="d-length"></td>
+              </tr>
+              <tr>
+                <td>x</td>
+                <td id="active-x"></td>
+              </tr>
+              <tr>
+                <td>y</td>
+                <td id="active-y"></td>
+              </tr>
+              <tr>
+                <td>f(x, y)</td>
+                <td id="active-f"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
