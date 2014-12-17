@@ -3,16 +3,9 @@
  * @param {Integer}
  * @param {Integer}
  */
-var Point = function(x, y) {
+var Point = function(x, y, notCalc) {
   this.x = x;
   this.y = y;
-
-  this.z = f.eval({
-    x: this.x,
-    y: this.y
-  });
-
-  window.fEvalCounter += 1;
 
   this.render = function(color) {
     canvasContext.beginPath();
@@ -34,7 +27,16 @@ var Point = function(x, y) {
     canvasContext.fill();
   }
 
-  this.render();
+  if (typeof(notCalc) == 'undefined') {
+    this.z = f.eval({
+      x: this.x,
+      y: this.y
+    });
+
+    this.render();
+
+    window.fEvalCounter += 1;
+  }
 }
 
 /**
@@ -81,7 +83,7 @@ var Interval = function(a, b) {
     var temp = (this.b.z - this.a.z) / (2 * fLipschitz);
     var x = ((this.a.x + this.b.x) / 2) - temp;
     var y = ((this.a.y + this.b.y) / 2) - temp;
-    return new Point(x, y);
+    return new Point(x, y, true);
   }
 }
 
